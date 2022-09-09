@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ToDoListMVC.Controllers
 {
@@ -11,10 +13,10 @@ namespace ToDoListMVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddList(string testing)
+        public IActionResult AddList(string test)
         {
-
-            return Json(new { success = true, responseText = "Success" });
+            var kek = JsonSerializer.Deserialize<string[]>(test);
+            return View();
         }
     }
 }

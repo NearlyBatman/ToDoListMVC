@@ -73,8 +73,7 @@
                 </table>
                 <div class="form-group">
                     <label>&nbsp;</label>
-                    <button id="buttonPost" type="submit"
-                        class="btn btn-primary">
+                    <button id="buttonPost" type="button" class="btn btn-primary">
                         Postar
                     </button>
                 </div>
@@ -100,6 +99,14 @@
         $("#formPost").prepend("<input type='hidden'name='" + listName + "[" + qtd + "].Telefone'value='" + tel + "'>");
         qtd += 1;
     });
+         $.ajax({
+            type: "POST",
+            url: "ToDo/AddList",
+            data: {test: JSON.stringify(listName)},
+            success: function(r){
+                alert(r + " task(s) inserted.")
+            }
+        })
         })
 
         $(document).ready(function(){
@@ -111,6 +118,31 @@
             test();
         });
         });
+
+        function test(){
+            var table = document.getElementById("tableTasks");
+            var newarray = new Array();
+            $("#tableTasks tr").each(function(){
+                $(this).find("td").each(function(){
+                    newarray.push($(this).text())
+                })
+            })
+            //for(var i = 0; i < table.row[i]; i++){
+                //newarray.push("2")
+                //for(var j = 0, col; col = row.col[j]; j++){
+                //    newarray.push(col.value())
+                //}
+            //}
+
+            $.ajax({
+            type: "POST",
+            url: "ToDo/AddList",
+            data: {test: JSON.stringify(newarray)},
+            success: function(r){
+                alert(r + " task(s) inserted.")
+            }
+        })
+        }
 
         function AddTask(){
             var Task = "<tr><td>" + $("#txtTask").val() + "</td></tr>";
@@ -142,7 +174,7 @@
         }
 
 
-        function testssss(){
+        function tests(){
             //var listOfTasks = new Array();
             //$("#tableTasks TBODY TR").each(function(){
             //    var row = $(this);
@@ -167,7 +199,7 @@
                 $.ajax({
             type: "POST",
             url: "ToDo/AddList",
-            data: {test: JSON.stringify(macro)},
+            data: {test: JSON.stringify(listName)},
             success: function(r){
                 alert(r + " task(s) inserted.")
             }
@@ -181,24 +213,24 @@
          [{ "type": "Mobile", "number": "(555) 121-7777" },
          { "type": "Home", "number": "(555) 121-9999"}]}];
 
-          function test() {
-              var dataToPost = "{ country:'" + 2 + "', amount:" + 4.02 + "}"
-   
+        //  function test() {
+        //      var dataToPost = "{ country:'" + 2 + "', amount:" + 4.02 + "}";
 
 
 
-        $.ajax({
-            url: @Url.Action("AddList","ToDo"),
-            type: 'POST',
-            dataType: 'json',
-            data: {testing: JSON.stringify(dataToPost)},
-            cache: false
-            contentType: 'application/jsonrequest; charset=utf-8',
-            dataType: 'json',
-            success: function (result) {
-                //  alert(result.ItemList[0].Str);
-            }
-        });
+
+        //$.ajax({
+        //    url: @Url.Action("AddList","ToDo"),
+        //    type: 'POST',
+        //    dataType: 'json',
+        //    data: {testing: JSON.stringify(dataToPost)},
+        //    cache: false
+        //    contentType: 'application/jsonrequest; charset=utf-8',
+        //    dataType: 'json',
+        //    success: function (result) {
+        //        //  alert(result.ItemList[0].Str);
+        //    }
+        //});
 
 </script>
 
