@@ -11,6 +11,14 @@
 <table>
     <tr>
         <td>
+            Listname
+        </td>
+        <td>
+            <input type="text" name="task" id="nameList" />
+        </td>
+        <tr/>
+        <tr>
+        <td>
             Task
         </td>
         <td>
@@ -121,6 +129,7 @@
 
         function test(){
             var table = document.getElementById("tableTasks");
+            var meh = $("#nameList").val();
             var newarray = new Array();
             $("#tableTasks tr").each(function(){
                 $(this).find("td").each(function(){
@@ -134,10 +143,15 @@
                 //}
             //}
 
+            var complex = {
+                name: meh,
+                tasks: newarray
+            };
+
             $.ajax({
             type: "POST",
             url: "ToDo/AddList",
-            data: {test: JSON.stringify(newarray)},
+            data: {test: JSON.stringify(complex)},
             success: function(r){
                 alert(r + " task(s) inserted.")
             }

@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ToDoList
+
+
+<form asp-action="UpdateList" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <label asp-for=Name class="control-label"></label>
+    <h1>@Model.Name</h1>
+    <table>
+        @for(var i = 0; i < Model.Tasks.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.Tasks[i].ToDoTask
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.Tasks[i].IsCompleted)
+                    
+                </td>
+            </tr>
+        }
+    </table>
+    <span asp-validation-for=Name></span>
+    <input id="submit" type="submit" value="submit" />
+</form>
+@using (Html.BeginForm("UpdateList", "ToDo"))
+{
+    @*@Html.HiddenFor(m => Model.Name)*@
+    <h1>@Html.DisplayFor(m => Model.Name)</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Task
+                </th>
+                <th>
+                    Completed
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @*            @for(var i = 0; i < Model.Tasks.Count; i++)
+                {
+                <tr>
+                <td>
+
+                @Html.CheckBoxFor(m => Model.Tasks[i].IsCompleted)
+                @Html.HiddenFor(m => Model.Tasks[i].IsCompleted)
+                </td>
+                <td>
+                @Html.HiddenFor(m => Model.Tasks[i].ToDoTask)
+                @Html.DisplayFor(m => Model.Tasks[i].ToDoTask)
+                </td>
+                </tr>
+                }*@
+            @foreach (var item in Model.Tasks)
+            {
+                <tr>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.ToDoTask)
+                        @Html.HiddenFor(m => item.ToDoTask)
+
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(m => item.IsCompleted)
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input id="submit" type="submit" value="submit" />
+}
