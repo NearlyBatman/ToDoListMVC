@@ -17,15 +17,5 @@ namespace ToDoListMVC.Models
         [BsonElement("Tasks")]
         public List<ToDoItem> Tasks = new List<ToDoItem>();
 
-        public ToDoList()
-        {
-
-        }
-        public ToDoList(string id, string name, List<ToDoItem> tasks)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Tasks = tasks;
-        }
     }
 }
