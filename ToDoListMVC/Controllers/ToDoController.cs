@@ -30,8 +30,8 @@ namespace ToDoListMVC.Controllers
                 list.Tasks.Add(new ToDoItem(item));
             }
 
-            //toDoCrud.Create(list);
-            return View();
+            toDoCrud.Create(list);
+            return View("List", toDoCrud.GetLists());
         }
         public IActionResult ViewLists()
         {
@@ -50,5 +50,11 @@ namespace ToDoListMVC.Controllers
 
             return View("WatchList", toDoCrud.Get(model.Id));
         } 
+        public IActionResult RemoveList(string id)
+        {
+            toDoCrud.Remove(id);
+            return View("List", toDoCrud.GetLists());
+        }
+
     }
 }

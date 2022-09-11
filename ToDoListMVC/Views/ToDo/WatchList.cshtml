@@ -28,13 +28,12 @@
                     <td>
 
                         @Html.DisplayFor(modelItem => item.ToDoTask)
-                        @Html.HiddenFor(m => item.ToDoTask)
 
                     </td>
 
                     <td>
                         <div class="form-group">
-                            @Html.CheckBoxFor(m => item.IsCompleted)
+                            @Html.EditorFor(m => item.IsCompleted)
                         </div>
                     </td>
                 </tr>
